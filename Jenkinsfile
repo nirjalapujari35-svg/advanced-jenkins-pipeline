@@ -32,10 +32,20 @@ pipeline {
         }
 
         stage('Test') {
-            steps {
-                echo 'Running tests...'
+    steps {
+        echo 'Running tests...'
+
+        script {
+            def testResult = false
+
+            if (testResult) {
+                echo 'All tests passed successfully.'
+            } else {
+                error 'Test failed! Stopping pipeline.'
             }
         }
+    }
+}
 
         stage('Deploy') {
             when {
